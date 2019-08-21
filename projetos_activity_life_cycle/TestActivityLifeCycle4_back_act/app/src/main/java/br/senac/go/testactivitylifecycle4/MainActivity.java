@@ -1,4 +1,4 @@
-package br.senac.go.testactivitylifecycle1;
+package br.senac.go.testactivitylifecycle4;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
