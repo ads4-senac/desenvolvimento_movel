@@ -1,4 +1,4 @@
-package br.senac.go.testactivitylifecycle1;
+package br.senac.go.testactivitylifecycle3;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("br.senac.go.testactivitylifecycle1", appContext.getPackageName());
+        assertEquals("br.senac.go.testactivitylifecycle3", appContext.getPackageName());
     }
 }

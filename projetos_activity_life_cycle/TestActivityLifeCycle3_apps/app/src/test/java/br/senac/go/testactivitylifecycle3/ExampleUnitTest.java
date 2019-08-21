@@ -1,4 +1,4 @@
-package br.senac.go.testactivitylifecycle1;
+package br.senac.go.testactivitylifecycle3;
 
 import org.junit.Test;
 
