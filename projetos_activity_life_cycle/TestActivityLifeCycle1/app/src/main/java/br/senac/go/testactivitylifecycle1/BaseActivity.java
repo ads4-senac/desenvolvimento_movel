@@ -10,38 +10,38 @@ import timber.log.Timber;
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        Timber.i("Entrou em onCreate");
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Timber.i("Entrou em onCreate %s", this.getClass().getCanonicalName());
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onRestart() {
+        Timber.i("Entrou em onRestart %s", this.getClass().getCanonicalName());
         super.onRestart();
-        Timber.i("Entrou em onRestart");
     }
 
     @Override
     protected void onResume() {
+        Timber.i("Entrou em onResume %s", this.getClass().getCanonicalName());
         super.onResume();
-        Timber.i("Entrou em onResume");
     }
 
     @Override
     protected void onStart() {
+        Timber.i("Entrou em onStart %s", this.getClass().getCanonicalName());
         super.onStart();
-        Timber.i("Entrou em onStart");
     }
 
     @Override
     protected void onStop() {
+        Timber.i("Entrou em onStop %s", this.getClass().getCanonicalName());
         super.onStop();
-        Timber.i("Entrou em onStop");
     }
 
     @Override
     protected void onDestroy() {
+        Timber.i("Entrou em onDestroy %s", this.getClass().getCanonicalName());
         super.onDestroy();
-        Timber.i("Entrou em onDestroy");
     }
 }
