@@ -1,6 +1,7 @@
 package dev.alexferreira.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.bind(items.get(i));
+        viewHolder.bind(items.get(i), i);
     }
 
     @Override
@@ -43,9 +44,13 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder
             super(itemView);
         }
 
-        public void bind(String text) {
+        public void bind(String text, int i) {
             TextView title = itemView.findViewById(R.id.tv_title);
             title.setText(text);
+
+            if (i % 2 == 0) {
+                title.setTypeface(title.getTypeface(), Typeface.BOLD);
+            }
         }
     }
 }

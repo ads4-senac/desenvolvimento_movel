@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity {
 
             TextView textToBold = findViewById(argInt);
             textToBold.setTypeface(textToBold.getTypeface(), Typeface.BOLD);
-            Toast.makeText(this, "Este pe o arg: " + arg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Este pe o arg: " + argInt, Toast.LENGTH_SHORT).show();
         }
         Button openBT = findViewById(R.id.bt_open);
         openBT.setOnClickListener(new View.OnClickListener() {
