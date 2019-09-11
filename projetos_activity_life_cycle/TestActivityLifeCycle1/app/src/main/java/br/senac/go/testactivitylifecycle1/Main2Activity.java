@@ -18,7 +18,6 @@ public class Main2Activity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("teste", R.id.tv_view_viewgroup);
                 startActivity(intent);
             }
         });
