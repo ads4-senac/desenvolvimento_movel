@@ -14,12 +14,14 @@ import java.util.List;
 
 public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder> {
 
-    private final List<String> items;
     private Context context;
+    private List<String> items;
+    private Listener listener;
 
-    public StringAdapter(Context context, List<String> items) {
+    public StringAdapter(Context context, List<String> items, Listener listener) {
         this.context = context;
         this.items = items;
+        this.listener = listener;
     }
 
     @NonNull
@@ -44,13 +46,27 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder
             super(itemView);
         }
 
-        public void bind(String text, int i) {
+        public void bind(final String item, int pos) {
             TextView title = itemView.findViewById(R.id.tv_title);
-            title.setText(text);
+            title.setText(item);
 
-            if (i % 2 == 0) {
+            if (pos % 2 == 0) {
                 title.setTypeface(title.getTypeface(), Typeface.BOLD);
+            } else {
+                title.setTypeface(null, Typeface.NORMAL);
             }
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.selectItem(item);
+                }
+            });
         }
     }
+
+    public interface Listener {
+        void selectItem(String item);
+    }
+
 }
