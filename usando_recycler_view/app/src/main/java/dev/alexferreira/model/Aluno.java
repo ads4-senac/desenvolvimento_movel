@@ -3,6 +3,9 @@ package dev.alexferreira.model;
 public class Aluno {
     private String disciplina;
 
+    public Aluno() {
+    }
+
     public Aluno(String disciplina) {
         this.disciplina = disciplina;
     }

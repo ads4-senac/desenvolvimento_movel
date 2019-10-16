@@ -9,16 +9,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import dev.alexferreira.R;
+import dev.alexferreira.model.Aluno;
 
 import java.util.List;
 
 public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder> {
 
     private Context context;
-    private List<String> items;
+    // TODO: 18/09/19 Alterar para ser lista de usuarios
+    private List<Aluno> items;
     private Listener listener;
 
-    public StringAdapter(Context context, List<String> items, Listener listener) {
+    // TODO: 18/09/19 - Alterar para receber uma lista de usuarios
+    public StringAdapter(Context context, List<Aluno> items, Listener listener) {
         this.context = context;
         this.items = items;
         this.listener = listener;
@@ -46,9 +49,16 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder
             super(itemView);
         }
 
-        public void bind(final String item, int pos) {
+        // TODO: 18/09/19 Alterar para receber objeto usuario
+        public void bind(final Aluno item, int pos) {
+            // TODO: 18/09/19 Alterar view para ter 2 textView
+            // TODO: 18/09/19 um para nome e outro para sobrenome
+            // TODO: 18/09/19 fazer set text de view com dado do obj usuario
             TextView title = itemView.findViewById(R.id.tv_title);
-            title.setText(item);
+            TextView disciplinaTV = itemView.findViewById(R.id.tv_disciplina);
+            title.setText("2019");
+            String disciplina = item.getDisciplina();
+            disciplinaTV.setText(disciplina);
 
             if (pos % 2 == 0) {
                 title.setTypeface(title.getTypeface(), Typeface.BOLD);
@@ -66,7 +76,7 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder
     }
 
     public interface Listener {
-        void selectItem(String item);
+        void selectItem(Aluno item);
     }
 
 }
