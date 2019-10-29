@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		rv = findViewById(R.id.recyclerView);
-		UserApi userApi = new Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com").addConverterFactory(GsonConverterFactory.create()).build().create(UserApi.class);
+		Retrofit retrofit = new Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com").addConverterFactory(GsonConverterFactory.create()).build();
+		UserApi userApi = retrofit.create(UserApi.class);
 		userRepository = new UserRepository(new UserMemorySourceImpl(), userApi);
 	}
 
