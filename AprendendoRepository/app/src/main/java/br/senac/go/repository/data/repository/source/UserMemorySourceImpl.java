@@ -2,11 +2,19 @@ package br.senac.go.repository.data.repository.source;
 
 import br.senac.go.repository.data.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class UserMemorySourceImpl implements UserMemorySource {
 
 	private List<User> userList;
+
+	public UserMemorySourceImpl() {
+		this.userList = new ArrayList<>();
+		userList.add(new User(1L, "Aluno 1", "Sobrenome 1", "123"));
+		userList.add(new User(2L, "Aluno 2", "Sobrenome 2", "123"));
+		userList.add(new User(3L, "Aluno 3", "Sobrenome 3", "123"));
+	}
 
 	@Override
 	public User crie(User model) {
