@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import br.senac.go.aprendendoroom.data.model.User;
 import br.senac.go.aprendendoroom.data.repository.source.UserApi;
-import br.senac.go.aprendendoroom.data.repository.source.UserDaoSource;
+import br.senac.go.aprendendoroom.data.repository.source.dao.UserDaoSource;
 import br.senac.go.aprendendoroom.data.repository.task.SaveAllUser;
 import retrofit2.Call;
 import retrofit2.Response;

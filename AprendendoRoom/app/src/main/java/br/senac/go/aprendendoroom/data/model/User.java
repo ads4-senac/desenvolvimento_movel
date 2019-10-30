@@ -1,10 +1,13 @@
 package br.senac.go.aprendendoroom.data.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class User {
 
+	@PrimaryKey
 	private Long id;
 	private Long userId;
 	private String title;
@@ -13,6 +16,7 @@ public class User {
 	public User() {
 	}
 
+	@Ignore
 	public User(Long id, Long userId, String title, boolean completed) {
 		this.id = id;
 		this.userId = userId;

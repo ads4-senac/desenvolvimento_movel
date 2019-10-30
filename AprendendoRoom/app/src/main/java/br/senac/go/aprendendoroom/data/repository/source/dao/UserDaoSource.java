@@ -1,4 +1,4 @@
-package br.senac.go.aprendendoroom.data.repository.source;
+package br.senac.go.aprendendoroom.data.repository.source.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -8,5 +8,5 @@ import br.senac.go.aprendendoroom.data.model.User;
 public interface UserDaoSource {
 
 	@Insert
-	User saveUser(User user);
+	Long saveUser(User user);
 }

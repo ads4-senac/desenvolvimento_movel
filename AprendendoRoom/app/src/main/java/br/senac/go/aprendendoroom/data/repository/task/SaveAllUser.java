@@ -1,9 +1,10 @@
 package br.senac.go.aprendendoroom.data.repository.task;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import br.senac.go.aprendendoroom.data.model.User;
 import br.senac.go.aprendendoroom.data.repository.IUserRepository;
-import br.senac.go.aprendendoroom.data.repository.source.UserDaoSource;
+import br.senac.go.aprendendoroom.data.repository.source.dao.UserDaoSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,15 @@ public final class SaveAllUser extends AsyncTask<String, Integer, List<User>> {
 	protected List<User> doInBackground(String... strings) {
 		try {
 			ArrayList<User> userList = new ArrayList<>();
-			userList.add(userDao.saveUser(user));
-			return userList;
+			Long userId = userDao.saveUser(user);
+			if (userId > 0) {
+				user.setId(userId);
+				userList.add(user);
+				return userList;
+			} else {
+				Log.d("SaveAllTask", "Id invalido gerado");
+				return null;
+			}
 		} catch (Exception e) {
 			callback.onError(e);
 		}

@@ -1,9 +1,9 @@
 package br.senac.go.aprendendoroom.data.repository.task;
 
 import android.os.AsyncTask;
-import br.senac.go.aprendendoretrofit.data.model.User;
-import br.senac.go.aprendendoretrofit.data.repository.IUserRepository;
-import br.senac.go.aprendendoretrofit.data.repository.source.UserApi;
+import br.senac.go.aprendendoroom.data.model.User;
+import br.senac.go.aprendendoroom.data.repository.IUserRepository;
+import br.senac.go.aprendendoroom.data.repository.source.UserApi;
 
 import java.io.IOException;
 import java.util.ArrayList;

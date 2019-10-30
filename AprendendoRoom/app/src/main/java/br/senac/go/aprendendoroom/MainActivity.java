@@ -10,13 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 import br.senac.go.aprendendoroom.data.model.User;
 import br.senac.go.aprendendoroom.data.repository.IUserRepository;
 import br.senac.go.aprendendoroom.data.repository.UserRepository;
 import br.senac.go.aprendendoroom.data.repository.source.UserApi;
-import br.senac.go.aprendendoroom.data.repository.source.UserMemorySourceImpl;
-
-import java.util.List;
+import br.senac.go.aprendendoroom.data.repository.source.dao.AbstractDatabase;
+import br.senac.go.aprendendoroom.data.repository.source.dao.UserDaoSource;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.List;
 
@@ -31,8 +33,14 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		rv = findViewById(R.id.recyclerView);
-		UserApi userDao;
-		userRepository = new UserRepository(new UserMemorySourceImpl(), userDao);
+		UserDaoSource userDao = Room
+				.databaseBuilder(getApplicationContext(), AbstractDatabase.class, "teste_db")
+				.fallbackToDestructiveMigration()
+				.build()
+				.createDaoSource();
+		Retrofit retrofit = new Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com").addConverterFactory(GsonConverterFactory.create()).build();
+		UserApi userApi = retrofit.create(UserApi.class);
+		userRepository = new UserRepository(userApi, userDao);
 	}
 
 	@Override
