@@ -1,0 +1,62 @@
+pipeline {
+	agent any
+	stages {
+		stage('Prepare-workspace') {
+			steps {
+				echo 'Limpando a workspace'
+				sh 'rm -rvf $WORKSPACE/*'
+				echo 'Copiando arquivos do projeto local para workspace'
+				sh 'cp -Rf /media/alexferreira/SSD/Documentos/Repositorios_git/Repositorios_Senac' +
+						'/desenvolvimento_movel/AprendendoRetrofit/* $WORKSPACE'
+			}
+		}
+		stage('Teste-unit') {
+			steps {
+				echo 'Executando testes de unit e exportando resultados'
+				script {
+					try {
+						sh '$WORKSPACE/gradlew testRelease'
+					} catch (def err) {
+						echo "erro de testes"
+					} finally {
+						sh 'mkdir -pv $WORKSPACE/reports/junit'
+						sh 'cp -Rf $WORKSPACE/app/build/reports/tests/testReleaseUnitTest/* $WORKSPACE/reports/junit'
+						publishHTML (target: [
+								allowMissing: false,
+								alwaysLinkToLastBuild: false,
+								keepAll: true,
+								reportDir: 'reports/junit',
+								reportFiles: 'index.html',
+								reportName: "Report junit"
+						])
+					}
+				}
+			}
+		}
+// //		stage('Teste-instrumentation') {
+// //			steps {
+// //				echo 'Executando testes de instrumentacao e exportando resultados'
+// //				sh 'gradlew '
+// //				junit 'reports/**/*.xml'
+// //			}
+// //		}
+		stage('build-lint') {
+			steps {
+				echo 'Rodando lint para release'
+				sh '$WORKSPACE/gradlew lintRelease'
+			}
+		}
+		stage('build-apk') {
+			steps {
+				echo 'Gerando apk signing'
+				sh '$WORKSPACE/gradlew assembleRelease'
+			}
+		}
+		stage('Arquive-apk') {
+			steps {
+				echo 'Arquivando apk gerado'
+				archiveArtifacts artifacts: '**/app-release.apk', fingerprint: true
+			}
+		}
+	}
+}
