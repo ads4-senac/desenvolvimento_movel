@@ -33,7 +33,7 @@ public class Frag1 extends Fragment {
 				Bundle bundle = new Bundle();
 				bundle.putString("param", text);
 				frag2.setArguments(bundle);
-				getFragmentManager().beginTransaction().add(R.id.fl_container, frag2)
+				getFragmentManager().beginTransaction().replace(R.id.fl_container, frag2)
 						.commit();
 			}
 		});
