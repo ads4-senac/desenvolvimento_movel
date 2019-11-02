@@ -18,7 +18,7 @@
 			android:layout_marginStart="8dp"
 			app:layout_constraintEnd_toEndOf="parent"
 			android:layout_marginEnd="8dp"
-			android:name="Frag1"
+			android:name="br.senac.go.fragmentportransacaoadd.Frag1"
 			/>
 
 	<FrameLayout
