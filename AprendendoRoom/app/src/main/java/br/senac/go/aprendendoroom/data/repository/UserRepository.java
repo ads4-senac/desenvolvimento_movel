@@ -25,22 +25,26 @@ public final class UserRepository implements IUserRepository {
 
 	@Override
 	public void getAll(final Callback<List<User>> callback) {
-		userApi.getUser().enqueue(new retrofit2.Callback<User>() {
-			@Override
-			public void onResponse(Call<User> call, Response<User> response) {
-				if (response.isSuccessful()) {
-					User user = response.body();
-					AsyncTask<String, Integer, List<User>> asyncTask = new SaveAllUser(daoSource,
-							callback, user);
-					asyncTask.execute();
+		if (internet) {
+			userApi.getUser().enqueue(new retrofit2.Callback<User>() {
+				@Override
+				public void onResponse(Call<User> call, Response<User> response) {
+					if (response.isSuccessful()) {
+						User user = response.body();
+						AsyncTask<String, Integer, List<User>> asyncTask = new SaveAllUser(daoSource,
+								callback, user);
+						asyncTask.execute();
+					}
 				}
-			}
 
-			@Override
-			public void onFailure(Call<User> call, Throwable t) {
-				Log.e(TAG, "Erro ao tentar salvar user em dao", t);
-			}
-		});
+				@Override
+				public void onFailure(Call<User> call, Throwable t) {
+					Log.e(TAG, "Erro ao tentar salvar user em dao", t);
+				}
+			});
+		} else {
+			// busca no banco
+		}
 	}
 
 	@Override
