@@ -1,5 +1,6 @@
 package br.senac.go.aprendendoroom.data.model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -9,6 +10,7 @@ public class User {
 
 	@PrimaryKey
 	private Long id;
+	@ColumnInfo()
 	private Long userId;
 	private String title;
 	private boolean completed;
